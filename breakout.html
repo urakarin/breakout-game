@@ -67,6 +67,13 @@
 
         const balls = [
             {
+                x: canvas.width / 2 - 100,
+                y: canvas.height - 50,
+                dx: 3,
+                dy: -3,
+                radius: 8
+            },
+            {
                 x: canvas.width / 2 - 50,
                 y: canvas.height - 50,
                 dx: 4,
@@ -86,6 +93,13 @@
                 dx: 6,
                 dy: -4,
                 radius: 8
+            },
+            {
+                x: canvas.width / 2 + 100,
+                y: canvas.height - 50,
+                dx: 7,
+                dy: -3,
+                radius: 8
             }
         ];
 
@@ -94,7 +108,7 @@
             y: canvas.height - 20,
             width: 100,
             height: 10,
-            speed: 8
+            speed: 16
         };
 
         const bricks = [];
@@ -120,20 +134,30 @@
         }
 
         function resetGame() {
-            balls[0].x = canvas.width / 2 - 50;
+            balls[0].x = canvas.width / 2 - 100;
             balls[0].y = canvas.height - 50;
-            balls[0].dx = 4;
-            balls[0].dy = -4;
+            balls[0].dx = 3;
+            balls[0].dy = -3;
             
-            balls[1].x = canvas.width / 2;
+            balls[1].x = canvas.width / 2 - 50;
             balls[1].y = canvas.height - 50;
-            balls[1].dx = 5;
-            balls[1].dy = -5;
+            balls[1].dx = 4;
+            balls[1].dy = -4;
             
-            balls[2].x = canvas.width / 2 + 50;
+            balls[2].x = canvas.width / 2;
             balls[2].y = canvas.height - 50;
-            balls[2].dx = 6;
-            balls[2].dy = -4;
+            balls[2].dx = 5;
+            balls[2].dy = -5;
+            
+            balls[3].x = canvas.width / 2 + 50;
+            balls[3].y = canvas.height - 50;
+            balls[3].dx = 6;
+            balls[3].dy = -4;
+            
+            balls[4].x = canvas.width / 2 + 100;
+            balls[4].y = canvas.height - 50;
+            balls[4].dx = 7;
+            balls[4].dy = -3;
             
             paddle.x = canvas.width / 2 - 50;
             score = 0;
@@ -146,7 +170,8 @@
             balls.forEach((ball, index) => {
                 ctx.beginPath();
                 ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-                ctx.fillStyle = index === 0 ? '#ff6b6b' : index === 1 ? '#4ecdc4' : '#ffe66d';
+                const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ff9ff3', '#54a0ff'];
+                ctx.fillStyle = colors[index];
                 ctx.fill();
                 ctx.closePath();
             });
