@@ -198,8 +198,11 @@
                 if (ball.y + ball.radius <= canvas.height) {
                     activeBalls++;
                     
-                    ball.x += ball.dx;
-                    ball.y += ball.dy;
+                    const isInLowerHalf = ball.y > canvas.height / 2;
+                    const speedMultiplier = isInLowerHalf ? 0.5 : 1.0;
+                    
+                    ball.x += ball.dx * speedMultiplier;
+                    ball.y += ball.dy * speedMultiplier;
 
                     if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
                         ball.dx = -ball.dx;
